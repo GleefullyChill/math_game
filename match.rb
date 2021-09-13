@@ -43,7 +43,7 @@ class Match
       puts "----- NEW TURN -----"
       puts turn.question(current_player.id)
       response_int = gets.chomp.to_i
-      puts response_int
+      
       result = turn.correct?(response_int, current_player.id)
       display_result(result, current_player)
 
