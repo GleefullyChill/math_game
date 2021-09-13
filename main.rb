@@ -1,6 +1,6 @@
 
 
-require_relative "./math_game"
+require_relative './match'
 
-new_game = Math_Game.new
+new_game = Match.new
 new_game.play

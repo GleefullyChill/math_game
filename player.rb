@@ -1,18 +1,18 @@
 
 
 
-class player
+class Player
   
   attr_reader :id
-  attr_accessor :score
+  attr_accessor :lives
 
   def initialize(id)
     @id = id
-    @score = 3
+    @lives = 3
   end
 
   def loser?
-    score == 0
+    lives == 0
   end
 
 end
