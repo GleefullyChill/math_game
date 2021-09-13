@@ -1,6 +1,9 @@
 
 
 
+require_relative "./player"
+require_relative "./turn"
+
 class match
 
   def initialize()
@@ -13,13 +16,22 @@ class match
     @player1.loser? || @player2.loser?
   end
 
-  def loss(player)
-    player.score -= 1
+  def loss(current_player)
+    current_player.score -= 1
     return "Seriously? No!"
   end
 
-  display_result(result, current_player)
-    message = (result ? )
+  def display_result(result, current_player)
+    result_message = (result ? "" : loss(current_player))
+    score_message = "P1: #{@player1.score}/3 vs #{@player2.score}/3"
+  end
+
+  def display_winner()
+    winner = (@player1.loser? @player2 : @player1)
+    
+    puts "Player #{winner.id} wins with a score of #{winner.score}"
+    puts "----- GAME OVER -----"
+  end
 
   def play()
     until game_over?()
@@ -27,14 +39,15 @@ class match
       current_player = players.first
       turn = new.turn()
 
-      turn.question(current_player)
+      puts "----- NEW TURN -----"
+      puts turn.question(current_player)
       response = gets.chomp
 
-      result = turn.loss?(response, current_player)
+      result = turn.correct?(response, current_player)
       display_result(result)
 
     end
-    display_winner
+    display_winner()
   end
 
 
